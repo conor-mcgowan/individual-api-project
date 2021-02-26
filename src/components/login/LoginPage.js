@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import "./LoginPage.scss";
 
-const LoginPage = (props) => {
+const LoginPage = () => {
   const history = useHistory();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   function login() {
-    console.log(username, password);
     if (username.length > 2 && password.length > 7) {
       history.push("/home");
     }
@@ -40,7 +40,7 @@ const LoginPage = (props) => {
           />
         </div>
         <button className="submit" onClick={() => login()}>
-          Login
+          Log In
         </button>
       </div>
     </>

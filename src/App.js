@@ -1,4 +1,3 @@
-import "./App.scss";
 import React from "react";
 import {
   Switch,
@@ -12,6 +11,7 @@ import HomePage from "./components/homepage/HomePage";
 import Studies from "./components/studies/Studies";
 import FavoritePuzzles from "./components/favorite-puzzles/FavoritePuzzles";
 import OTBGames from "./components/otb-games/OTBGames";
+import "./App.scss";
 
 function App() {
   return (
@@ -49,7 +49,7 @@ function App() {
           <NavLink
             to="/otbgames"
             className="link text-center"
-            activeClassName="active=link"
+            activeClassName="active-link"
           >
             OTB Games by FEN
           </NavLink>
