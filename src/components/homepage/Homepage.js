@@ -12,8 +12,9 @@ const HomePage = (props) => {
   const [query, setQuery] = useState("");
 
   async function getLiUser() {
-    const key = "st4FSa3Ephd23eeb";
+    // const key = "st4FSa3Ephd23eeb";
     const url = `https://lichess.org/api/user/${query}`;
+    console.log(url);
     try {
       setError("");
       let response = await fetch(url);
@@ -27,7 +28,6 @@ const HomePage = (props) => {
           streaming: val.streaming,
         };
       });
-      console.log(url);
       console.log(resUser);
       props.setSearch(resUser);
     } catch (e) {
