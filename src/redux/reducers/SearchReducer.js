@@ -1,9 +1,8 @@
-import { SET_SEARCH } from "../actions";
+import { SET_SEARCH } from "../actions/SearchActions";
 
 function searchReducer(state = [], action) {
   switch (action.type) {
     case SET_SEARCH:
-      console.log(action, state);
       return action.search;
 
     default:

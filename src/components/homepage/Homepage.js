@@ -4,47 +4,32 @@ import { setSearch } from "../../redux/actions";
 // import CPuzzleDisplay from "../c-puzzle-display/CPuzzleDisplay";
 import LiPuzzleDisplay from "../li-puzzle-display/LiPuzzleDisplay";
 import TournamentDisplay from "../tournament-display/TournamentDisplay";
-import Streamers from "../streamers/Streamers";
+import StreamerDisplay from "../streamer-display/StreamerDisplay";
 import "./HomePage.scss";
 
 const HomePage = (props) => {
   const [error, setError] = useState("");
-  async function getCPuzzle() {
-    try {
-      setError("");
-      let response = await fetch(`https://api.chess.com/pub/puzzle`);
-      let json = await response.json();
-      let resPuzzle = json.data.map((val) => {
-        return {
-          title: val.title,
-          url: val.url,
-          fen: val.fen,
-          pgn: val.pgn,
-          image: val.image,
-        };
-      });
-      props.setSearch(resPuzzle);
-    } catch (e) {
-      setError("Something went wrong. Please try again later!");
-      props.setSearch([]);
-    }
-  }
+  const [query, setQuery] = useState("");
 
-  async function getStreamers() {
+  async function getLiUser() {
+    const key = "st4FSa3Ephd23eeb";
+    const url = `https://lichess.org/api/user/${query}`;
     try {
       setError("");
-      let response = await fetch(`https://lichess.org/streamer/live`);
+      let response = await fetch(url);
       let json = await response.json();
-      let resPuzzle = json.data.map((val) => {
+      let resUser = json.data.map((val) => {
         return {
-          title: val.title,
-          url: val.url,
-          fen: val.fen,
-          pgn: val.pgn,
-          image: val.image,
+          username: val.username,
+          online: val.online,
+          perfs: val.perfs,
+          playtime: val.playTime,
+          streaming: val.streaming,
         };
       });
-      props.setSearch(resPuzzle);
+      console.log(url);
+      console.log(resUser);
+      props.setSearch(resUser);
     } catch (e) {
       setError("Something went wrong. Please try again later!");
       props.setSearch([]);
@@ -68,10 +53,21 @@ const HomePage = (props) => {
         <LiPuzzleDisplay></LiPuzzleDisplay>
       </div>
       <div>
-        <h1>Homepage Tournament Area</h1>
-      </div>
-      <div>
-        <h1>Homepage Streamer Area</h1>
+        <h1>Lichess User Search</h1>
+        <label htmlFor="user-search">Search by Username </label>
+        <input
+          id="user-search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <button onClick={() => getLiUser(query)}>Search</button>
+        <article className="results-container">
+          {error.length > 0 && <h1>{error}</h1>}
+          {error.length === 0 &&
+            props.user.map((v) => {
+              return <StreamerDisplay user={v} key={v.username} />;
+            })}
+        </article>
       </div>
     </>
   );
@@ -83,7 +79,7 @@ const mapDispatchToProps = {
 
 function mapStateToProps(state) {
   return {
-    puzzle: state.search,
+    user: state.search,
   };
 }
 
