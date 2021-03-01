@@ -11,8 +11,9 @@ import HomePage from "./components/homepage/HomePage";
 import Studies from "./components/studies/Studies";
 import FavoritePuzzles from "./components/favorite-puzzles/FavoritePuzzles";
 import OTBGames from "./components/otb-games/OTBGames";
+import { Provider } from "react-redux";
+import store from "./redux/Store";
 import "./App.scss";
-import FavoritesProvider from "./contexts/FavoritesContext";
 
 function App() {
   return (

@@ -1,7 +1,6 @@
 import React from "react";
 import "./TournamentDisplay.scss";
 
-// let gif = props.gif
 const TournamentDisplay = ({ tourney }) => {
   return (
     <div className="tourney-container">

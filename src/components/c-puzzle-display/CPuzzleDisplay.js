@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import "./CPuzzleDisplay.scss";
 
-const CPuzzleDisplay = ({ cPuzzle }) => {
+const CPuzzleDisplay = ({ props }) => {
   const [error, setError] = useState("");
 
   async function getCPuzzle() {
@@ -30,6 +30,7 @@ const CPuzzleDisplay = ({ cPuzzle }) => {
     <div className="c-puzzle-container">
       <h3 className="text-center"></h3>
       <button onClick={getCPuzzle()}>Retrieve</button>
+      <image src={} />
     </div>
   );
 };
