@@ -60,7 +60,9 @@ const HomePage = (props) => {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <button onClick={() => getLiUser(query)}>Search</button>
+        <button onClick={() => query.length > 2 && getLiUser(query)}>
+          Search
+        </button>
         <article className="results-container">
           {error.length > 0 && <h1>{error}</h1>}
           {error.length === 0 &&
