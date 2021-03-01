@@ -12,9 +12,11 @@ import Studies from "./components/studies/Studies";
 import FavoritePuzzles from "./components/favorite-puzzles/FavoritePuzzles";
 import OTBGames from "./components/otb-games/OTBGames";
 import "./App.scss";
+import FavoritesProvider from "./contexts/FavoritesContext";
 
 function App() {
   return (
+    // <Provider store={store}>
     <Router>
       <>
         <nav className="menu">
@@ -68,6 +70,7 @@ function App() {
         </main>
       </>
     </Router>
+    // </Provider>
   );
 }
 
