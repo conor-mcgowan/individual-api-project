@@ -11,7 +11,6 @@ const LiPuzzleDisplay = ({ liPuzzle }) => {
         allowtransparency="true"
         frameborder="0"
       ></iframe>
-      <button>Add to Favorites</button>
     </div>
   );
 };
