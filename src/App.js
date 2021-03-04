@@ -7,7 +7,7 @@ import {
   NavLink,
 } from "react-router-dom";
 import LoginPage from "./components/login/LoginPage";
-import HomePage from "./components/homepage/HomePage";
+import HomePage from "./components/homepage/Homepage";
 import Studies from "./components/studies/Studies";
 import OTBGames from "./components/otb-games/OTBGames";
 import { Provider } from "react-redux";

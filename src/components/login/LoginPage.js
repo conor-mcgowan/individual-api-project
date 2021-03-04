@@ -6,9 +6,12 @@ const LoginPage = () => {
   const history = useHistory();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loginError, setLoginError] = useState("");
   function login() {
     if (username.length > 2 && password.length > 7) {
       history.push("/home");
+    } else {
+      setLoginError("Invalid username or password.");
     }
   }
   return (
@@ -42,6 +45,7 @@ const LoginPage = () => {
         <button className="submit" onClick={() => login()}>
           Log In
         </button>
+        <div className="error">{loginError}</div>
       </div>
     </>
   );

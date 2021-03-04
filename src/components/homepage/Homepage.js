@@ -11,7 +11,7 @@ const HomePage = (props) => {
   const [error, setError] = useState("");
   const [query, setQuery] = useState("");
 
-  async function getLiUser() {
+  async function getLiUser(query) {
     // const key = "st4FSa3Ephd23eeb";
     const url = `https://lichess.org/api/user/${query}`;
     console.log(url);
