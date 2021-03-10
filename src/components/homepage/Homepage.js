@@ -14,22 +14,22 @@ const HomePage = (props) => {
   async function getLiUser(query) {
     // const key = "st4FSa3Ephd23eeb";
     const url = `https://lichess.org/api/user/${query}`;
-    console.log(url);
+    // console.log(url);
     try {
       setError("");
       let response = await fetch(url);
       let json = await response.json();
-      let resUser = json.data.map((val) => {
-        return {
-          username: val.username,
-          online: val.online,
-          perfs: val.perfs,
-          playtime: val.playTime,
-          streaming: val.streaming,
-        };
-      });
+      // console.log(json);
+      let resUser = {
+        username: json.username,
+        online: json.online,
+        perfs: json.perfs,
+        playtime: json.playTime,
+        streaming: json.streaming,
+      };
       console.log(resUser);
       props.setSearch(resUser);
+      console.log(resUser);
     } catch (e) {
       setError("Something went wrong. Please try again later!");
       props.setSearch([]);
@@ -65,10 +65,7 @@ const HomePage = (props) => {
         </button>
         <article className="results-container">
           {error.length > 0 && <h1>{error}</h1>}
-          {error.length === 0 &&
-            props.user.map((v) => {
-              return <StreamerDisplay user={v} key={v.username} />;
-            })}
+          {error.length === 0 && <StreamerDisplay user={props.user} />}
         </article>
       </div>
     </>
