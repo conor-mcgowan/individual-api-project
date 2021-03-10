@@ -40,6 +40,8 @@ const LoginPage = (props) => {
         history.push("/home");
       }
     } catch (err) {
+      console.log(err);
+      console.log(JSON.data);
       setLoginError("Something went wrong, please try again.");
     }
   }
