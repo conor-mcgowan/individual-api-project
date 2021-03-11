@@ -4,8 +4,8 @@ import { setSearch } from "../../redux/actions";
 // import CPuzzleDisplay from "../c-puzzle-display/CPuzzleDisplay";
 import LiPuzzleDisplay from "../li-puzzle-display/LiPuzzleDisplay";
 import TournamentDisplay from "../tournament-display/TournamentDisplay";
-import StreamerDisplay from "../streamer-display/StreamerDisplay";
-import "./HomePage.scss";
+import PlayerDisplay from "../player-display/PlayerDisplay";
+import "./Homepage.scss";
 
 const HomePage = (props) => {
   const [error, setError] = useState("");
@@ -65,7 +65,7 @@ const HomePage = (props) => {
         </button>
         <article className="results-container">
           {error.length > 0 && <h1>{error}</h1>}
-          {error.length === 0 && <StreamerDisplay user={props.user} />}
+          {error.length === 0 && <PlayerDisplay user={props.user} />}
         </article>
       </div>
     </>

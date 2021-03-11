@@ -6,6 +6,7 @@ import {
   Redirect,
   NavLink,
 } from "react-router-dom";
+import SignupPage from "./components/signup/SignupPage";
 import LoginPage from "./components/login/LoginPage";
 import HomePage from "./components/homepage/Homepage";
 import Studies from "./components/studies/Studies";
@@ -20,6 +21,13 @@ function App() {
       <Router>
         <>
           <nav className="menu">
+            <NavLink
+              to="/signup"
+              className="link text-center"
+              activeClassName="active-link"
+            >
+              Signup
+            </NavLink>
             <NavLink
               to="/login"
               className="link text-center"
@@ -51,6 +59,7 @@ function App() {
           </nav>
           <main className="main-container">
             <Switch>
+              <Route path="/signup" component={SignupPage} />
               <Route path="/login" component={LoginPage} />
               <Route path="/home" component={HomePage} />
               <Route path="/studies" component={Studies} />

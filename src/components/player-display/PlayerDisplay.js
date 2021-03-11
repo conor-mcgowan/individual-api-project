@@ -1,7 +1,7 @@
 import React from "react";
-import "./StreamerDisplay.scss";
+import "./PlayerDisplay.scss";
 
-const StreamerDisplay = ({ user }) => {
+const PlayerDisplay = ({ user }) => {
   return (
     <div>
       <h3 className="text-center">{user.username}</h3>
@@ -25,4 +25,4 @@ const StreamerDisplay = ({ user }) => {
   );
 };
 
-export default StreamerDisplay;
+export default PlayerDisplay;

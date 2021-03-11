@@ -1,48 +1,61 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { setUser } from "../../redux/actions";
-import "./LoginPage.scss";
+import axios from "axios";
+import "./SignupPage.scss";
 
-const LoginPage = (props) => {
+const SignupPage = (props) => {
   const history = useHistory();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [loginError, setLoginError] = useState("");
-  async function login() {
-    setLoginError("");
-    if (
-      username.length < 4 ||
-      username.length > 20 ||
-      password.length < 7 ||
-      password.length > 20
-    ) {
-      setLoginError("Invalid username or password.");
+  const [signupError, setSignupError] = useState("");
+  async function signup() {
+    setSignupError("");
+    if (username.length < 5 || username.length > 20) {
+      setSignupError(
+        "Username must be between five and 20 characters inclusive."
+      );
       return;
     }
+    if (password.length < 7 || password.length > 20) {
+      setSignupError(
+        "Password must be between seven and 20 characters inclusive."
+      );
+      return;
+    }
+
     try {
       // fetch from the appropriate endpoint
       // post username and password in the body
-      const json = await axios.post("/users/login", {
+      // const response = await fetch("/users/login", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({ username: username, password: password }),
+      // });
+      // // check response
+      // const json = await response.json();
+      // //handle response
+      const json = await axios.post("/users/signup", {
         username: username,
         password: password,
       });
       if (json.data.error) {
-        setLoginError(json.data.error);
+        setSignupError(json.data.error);
       } else {
         props.setUser(json.data.data.username);
-        history.push("/homepage");
+        history.push("/search");
       }
     } catch (err) {
-      console.log(err);
-      console.log(JSON.data);
-      setLoginError("Something went wrong, please try again.");
+      setSignupError("Something went wrong, please try again later!");
     }
   }
+
   return (
     <>
-      <h1 className="text-center">Login</h1>
+      <h1 className="text-center">Signup</h1>
       <div className="form">
         <div className="form-container">
           <label className="label text-center" htmlFor="username">
@@ -68,10 +81,10 @@ const LoginPage = (props) => {
             id="password"
           />
         </div>
-        <button className="submit" onClick={() => login()}>
-          Log In
+        <button className="submit" onClick={() => signup()}>
+          Sign Up
         </button>
-        {loginError.length > 0 && <div className="error">{loginError}</div>}
+        {signupError.length > 0 && <div className="error">{signupError}</div>}
       </div>
     </>
   );
@@ -85,4 +98,4 @@ function mapStateToProps(state) {
   return {};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
+export default connect(mapStateToProps, mapDispatchToProps)(SignupPage);
